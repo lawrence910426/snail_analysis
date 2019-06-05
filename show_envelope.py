@@ -6,7 +6,7 @@ from scipy import stats
 import sys
 
 
-def show_curve(x, y, mini_diff=5, mini_len=3):
+def monotone(x, y, mini_diff=5, mini_len=3):
     upper_i, upper_v, lower_i, lower_v = [], [], [], []
     monotone_q = [y[0], y[1]]
 
@@ -18,10 +18,10 @@ def show_curve(x, y, mini_diff=5, mini_len=3):
                 if np.abs(monotone_q[len(monotone_q) - 1] - monotone_q[0]) > mini_diff and len(monotone_q) > mini_len:
                     if y[i] > 0:
                         upper_i.append(x[i - 1])
-                        upper_v.append(np.log(y[i - 1]))
+                        upper_v.append(y[i - 1])
                     else:
                         lower_i.append(x[i - 1])
-                        lower_v.append(np.log(-y[i - 1]))
+                        lower_v.append(-y[i - 1])
                 monotone_q = [monotone_q[len(monotone_q) - 1], y[i]]
         else:
             if monotone_q[len(monotone_q) - 1] > y[i]:
@@ -30,44 +30,41 @@ def show_curve(x, y, mini_diff=5, mini_len=3):
                 if np.abs(monotone_q[len(monotone_q) - 1] - monotone_q[0]) > mini_diff and len(monotone_q) > mini_len:
                     if y[i] > 0:
                         upper_i.append(x[i - 1])
-                        upper_v.append(np.log(y[i - 1]))
+                        upper_v.append(y[i - 1])
                     else:
                         lower_i.append(x[i - 1])
-                        lower_v.append(np.log(-y[i - 1]))
+                        lower_v.append(-y[i - 1])
                 monotone_q = [monotone_q[len(monotone_q) - 1], y[i]]
+    return upper_i, upper_v, lower_i, lower_v
 
-    alpha_up, beta_up, _, _, _ = stats.linregress(upper_i, upper_v)
-    alpha_low, beta_low, _, _, _ = stats.linregress(lower_i, lower_v)
+
+def show_curve(upper_i, upper_v, lower_i, lower_v, rawx, rawy):
+    alpha_up, beta_up, _, _, _ = stats.linregress(upper_i, np.log(upper_v))
+    alpha_low, beta_low, _, _, _ = stats.linregress(lower_i, np.log(lower_v))
 
     print("Envelope(up): e^({} * x + {})".format(alpha_up, beta_up))
     print("Envelope(down): -e^({} * x + {})".format(alpha_low, beta_low))
 
-    plt.plot(x, y)
+    plt.plot(rawx, rawy)
     plt.plot(upper_i, [math.exp(alpha_up * item + beta_up) for item in upper_i], label="Envelope(up)")
     plt.plot(lower_i, [-math.exp(alpha_low * item + beta_low) for item in lower_i], label="Envelope(down)")
-    plt.scatter(upper_i, np.exp(upper_v), label="Values found(up)")
-    plt.scatter(lower_i, -np.exp(lower_v), label="Values found(down)")
+    plt.scatter(upper_i, upper_v, label="Values found(up)")
+    plt.scatter(lower_i, np.negative(lower_v), label="Values found(down)")
     plt.legend()
     plt.show()
 
 
-file_name = input(u"輸入被分析的檔案\n")
-leng = int(input(u"輸入分析列數\n"))
-
-x = []
-y1, y2 = [], []
-
-with open(file_name, newline='') as csvfile:
-    rows = csv.reader(csvfile)
-    counter = 0
-    for row in rows:
-        if not (counter == 0 or counter == 1):
-            x.append(float(row[0]))
-            y1.append(float(row[3]))
-            y2.append(float(row[4]))
-        if counter >= leng:
-            break
-        counter += 1
-x = np.array(x)
-y1, y2 = np.array(y1), np.array(y2)
-show_curve(x, y2, )
+def show_envelope(files, config):
+    x, y = [], []
+    for file_name in files:
+        with open(file_name, newline='') as csvfile:
+            leng = config["global"]["rows"]["value"]
+            rows = csv.reader(csvfile)
+            rows = [[i for i in row] for row in rows]
+            for i in range(config["global"]["x"]["row"], config["global"]["x"]["row"] + leng):
+                x.append(float(rows[i][config["global"]["x"]["column"]]))
+            for i in range(config["global"]["y"]["row"], config["global"]["y"]["row"] + leng):
+                y.append(float(rows[i][config["global"]["y"]["column"]]))
+        x, y = np.array(x), np.array(y)
+        a, b, c, d = monotone(x, y)
+        show_curve(a, b, c, d, x, y)
