@@ -1,41 +1,8 @@
-import numpy as np
 import csv
 import matplotlib.pyplot as plt
 import math
 from scipy import stats
-import sys
-
-
-def monotone(x, y, mini_diff=5, mini_len=3):
-    upper_i, upper_v, lower_i, lower_v = [], [], [], []
-    monotone_q = [y[0], y[1]]
-
-    for i in range(2, len(y)):
-        if monotone_q[0] < monotone_q[1]:
-            if monotone_q[len(monotone_q) - 1] < y[i]:
-                monotone_q.append(y[i])
-            else:
-                if np.abs(monotone_q[len(monotone_q) - 1] - monotone_q[0]) > mini_diff and len(monotone_q) > mini_len:
-                    if y[i] > 0:
-                        upper_i.append(x[i - 1])
-                        upper_v.append(y[i - 1])
-                    else:
-                        lower_i.append(x[i - 1])
-                        lower_v.append(-y[i - 1])
-                monotone_q = [monotone_q[len(monotone_q) - 1], y[i]]
-        else:
-            if monotone_q[len(monotone_q) - 1] > y[i]:
-                monotone_q.append(y[i])
-            else:
-                if np.abs(monotone_q[len(monotone_q) - 1] - monotone_q[0]) > mini_diff and len(monotone_q) > mini_len:
-                    if y[i] > 0:
-                        upper_i.append(x[i - 1])
-                        upper_v.append(y[i - 1])
-                    else:
-                        lower_i.append(x[i - 1])
-                        lower_v.append(-y[i - 1])
-                monotone_q = [monotone_q[len(monotone_q) - 1], y[i]]
-    return upper_i, upper_v, lower_i, lower_v
+from envelope.envelope_import import *
 
 
 def show_curve(upper_i, upper_v, lower_i, lower_v, rawx, rawy):
@@ -54,6 +21,10 @@ def show_curve(upper_i, upper_v, lower_i, lower_v, rawx, rawy):
     plt.show()
 
 
+def rmq():
+    return [0], [0], [0], [0]
+
+
 def show_envelope(files, config):
     x, y = [], []
     for file_name in files:
@@ -66,5 +37,17 @@ def show_envelope(files, config):
             for i in range(config["global"]["y"]["row"], config["global"]["y"]["row"] + leng):
                 y.append(float(rows[i][config["global"]["y"]["column"]]))
         x, y = np.array(x), np.array(y)
-        a, b, c, d = monotone(x, y)
+        if config["show_envelope"]["mono_q"]["activate"]:
+            mq_attr = config["show_envelope"]["mono_q"]
+            a, b, c, d = monotone(x, y, mq_attr["mini_diff"], mq_attr["mini_len"])
+        elif config["show_envelope"]["rmq"]["activate"]:
+            rmq_attr = config["show_envelope"]["rmq"]
+            a, b, c, d = range_query(x, y, rmq_attr["window"], rmq_attr["rank"])
+        elif config["show_envelope"]["manual"]["activate"]:
+            a, b, c, d = manual(x, y)
+        elif config["show_envelope"]["file"]["activate"]:
+            a, b, c, d = from_file(x, y, config["show_envelope"]["file"]["location"])
+        up_tmp, low_tmp = {a[i]: b[i] for i in range(len(a))}, {c[i]: d[i] for i in range(len(c))}
+        a, c = sorted(up_tmp.keys()), sorted(low_tmp.keys())
+        b, d = [up_tmp[k] for k in a], [low_tmp[k] for k in c]
         show_curve(a, b, c, d, x, y)
