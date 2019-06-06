@@ -2,6 +2,7 @@ import os
 import json
 import glob
 from envelope.show_envelope import show_envelope
+from spectrum.spectrum_analysis import spectrum
 
 config = {
     "show_envelope": {
@@ -21,7 +22,8 @@ config = {
             "location": "pos.txt"
         }
     }, "show_spectrum": {
-        "execute": False
+        "rank": 3,
+        "execute": True
     }, "global": {
         "x": {
             "row": 1,
@@ -31,8 +33,8 @@ config = {
             "column": 4
         }, "rows": {
             "value": 150,
-            "always_request": False
-        }, "show_rerun": True
+            "always_request": False  # Not implemented
+        }, "show_rerun": True  # Not implemented
     }
 }
 
@@ -64,13 +66,15 @@ if '.' in fname:  # regard as a folder
     else:
         config_not_exist()
 else:
-    fname = fname[0:len(fname) - 2] if fname[len(fname) - 1] in ['\\', '/'] else fname
+    fname = os.path.abspath(fname)
     config_path = fname + "/config.json"
     if os.path.exists(config_path):
         read_config()
-        files = glob.glob(fname + "/*.csv")
     else:
         config_not_exist()
+    files = glob.glob(fname + "/*.csv")
 
 if config["show_envelope"]["execute"]:
     show_envelope(files, config)
+if config["show_spectrum"]["execute"]:
+    spectrum(files, config)
