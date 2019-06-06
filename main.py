@@ -1,11 +1,10 @@
 import os
 import json
 import glob
-from show_envelope import show_envelope
-from pathlib import Path
+from envelope.show_envelope import show_envelope
 
 config = {
-    "show_envelop": {
+    "show_envelope": {
         "execute": True,
         "mono_q": {
             "activate": False,
@@ -13,10 +12,16 @@ config = {
             "mini_len": 5
         }, "rmq": {
             "activate": True,
-            "gate": 3
+            "window": 20,
+            "rank": 5
         }, "manual": {
             "activate": False,
+        }, "file": {
+            "activate": False,
+            "location": "pos.txt"
         }
+    }, "show_spectrum": {
+        "execute": False
     }, "global": {
         "x": {
             "row": 1,
@@ -25,7 +30,7 @@ config = {
             "row": 1,
             "column": 4
         }, "rows": {
-            "value": 300,
+            "value": 150,
             "always_request": False
         }, "show_rerun": True
     }
@@ -67,5 +72,5 @@ else:
     else:
         config_not_exist()
 
-if config["show_envelop"]["execute"]:
+if config["show_envelope"]["execute"]:
     show_envelope(files, config)
