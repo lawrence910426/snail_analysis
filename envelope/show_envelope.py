@@ -11,8 +11,8 @@ def show_curve(upper_i, upper_v, lower_i, lower_v, rawx, rawy, tag):
     alpha_low, beta_low, _, _, _ = stats.linregress(lower_i, np.log(lower_v))
 
     print(colored("---------{}---------".format(tag), 'red'))
-    print("Envelope(up): e^({} * x + {})".format(alpha_up, beta_up))
-    print("Envelope(down): -e^({} * x + {})".format(alpha_low, beta_low))
+    print("Envelope(up): {} * e^({} * x)".format(np.exp(beta_up), alpha_up))
+    print("Envelope(down): -{} * e^({} * x)".format(np.exp(beta_low), alpha_low))
 
     plt.figure(figsize=(16, 16))
     plt.suptitle("Envelope curve of: " + tag, fontsize=20)
