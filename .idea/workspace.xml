@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/spectrum/spectrum_analysis.py" line="52" />
-    <bookmark url="file://$PROJECT_DIR$/spectrum/spectrum_analysis.py" line="53" />
+    <bookmark url="file://$PROJECT_DIR$/spectrum/spectrum_analysis.py" line="55" />
+    <bookmark url="file://$PROJECT_DIR$/spectrum/spectrum_analysis.py" line="56" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="edb36b26-071b-4a7a-a93d-ae922144a416" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/show_everything.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/envelope/show_envelope.py" beforeDir="false" afterPath="$PROJECT_DIR$/envelope/show_envelope.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spectrum/spectrum_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/spectrum/spectrum_analysis.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,11 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="497">
-              <caret line="65" column="9" lean-forward="true" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
+            <state relative-caret-position="1404">
+              <caret line="85" column="48" selection-start-line="85" selection-start-column="48" selection-end-line="86" selection-end-column="42" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -31,8 +35,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/envelope/show_envelope.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+            <state relative-caret-position="144">
+              <caret line="12" column="65" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="65" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -41,10 +45,25 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/reader.py">
+        <entry file="file://$PROJECT_DIR$/spectrum/spectrum_analysis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="5" column="48" selection-start-line="5" selection-start-column="48" selection-end-line="5" selection-end-column="48" />
+            <state relative-caret-position="990">
+              <caret line="57" column="3" selection-start-line="57" selection-start-column="3" selection-end-line="57" selection-end-column="3" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/show_everything.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="11" column="91" selection-start-line="11" selection-start-column="85" selection-end-line="11" selection-end-column="91" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -67,9 +86,10 @@
         <option value="$PROJECT_DIR$/envelope/segment_tree.py" />
         <option value="$PROJECT_DIR$/envelope/envelope_import.py" />
         <option value="$PROJECT_DIR$/reader.py" />
-        <option value="$PROJECT_DIR$/spectrum/spectrum_analysis.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/envelope/show_envelope.py" />
+        <option value="$PROJECT_DIR$/spectrum/spectrum_analysis.py" />
+        <option value="$PROJECT_DIR$/show_everything.py" />
+        <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
   </component>
@@ -263,7 +283,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22550052" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.45679662" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -292,7 +312,6 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/lagrange.py" />
     <entry file="file://$PROJECT_DIR$/curve.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/codecs.py" />
     <entry file="file://$PROJECT_DIR$/pos.txt" />
     <entry file="file://$PROJECT_DIR$/envelope/segment_tree.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -318,16 +337,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spectrum/spectrum_analysis.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/reader.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -335,22 +344,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="310" selection-start-line="310" selection-end-line="310" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1404">
+          <caret line="85" column="48" selection-start-line="85" selection-start-column="48" selection-end-line="86" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/envelope/show_envelope.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+        <state relative-caret-position="144">
+          <caret line="12" column="65" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="65" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/spectrum/spectrum_analysis.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="497">
-          <caret line="65" column="9" lean-forward="true" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
+        <state relative-caret-position="990">
+          <caret line="57" column="3" selection-start-line="57" selection-start-column="3" selection-end-line="57" selection-end-column="3" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/show_everything.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="91" selection-start-line="11" selection-start-column="85" selection-end-line="11" selection-end-column="91" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>

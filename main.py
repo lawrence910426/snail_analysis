@@ -3,10 +3,14 @@ import json
 import glob
 from envelope.show_envelope import show_envelope
 from spectrum.spectrum_analysis import spectrum
+from show_everything import show_everything
+from reader import reader
+import numpy as np
 
 config = {
     "show_envelope": {
         "execute": True,
+        "show": False,
         "mono_q": {
             "activate": False,
             "mini_diff": 3,
@@ -23,7 +27,8 @@ config = {
         }
     }, "show_spectrum": {
         "rank": 3,
-        "execute": True
+        "execute": True,
+        "show": True
     }, "global": {
         "x": {
             "row": 1,
@@ -74,7 +79,12 @@ else:
         config_not_exist()
     files = glob.glob(fname + "/*.csv")
 
-if config["show_envelope"]["execute"]:
-    show_envelope(files, config)
-if config["show_spectrum"]["execute"]:
-    spectrum(files, config)
+for fname in files:
+    x, y = reader(fname, config)
+    x, y = np.array(x), np.array(y)
+    if config["show_envelope"]["execute"]:
+        env = show_envelope(fname ,x ,y, config)
+    if config["show_spectrum"]["execute"]:
+        spec = spectrum(fname ,x ,y, config)
+    if config["show_spectrum"]["execute"] and config["show_envelope"]["execute"]:
+        show_everything(x ,y ,env, spec ,fname)
